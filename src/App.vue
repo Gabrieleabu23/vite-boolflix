@@ -18,38 +18,44 @@ export default {
   },
   methods: {
     getGeneralObject() {
-      // ESEMPIO DI STAMPA - DEBUG
-      // console.log(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query=ritorno+al+futuro')
-      console.log(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query='+store.searchMovieorTv)
-      axios
-      // MILESTONE 0 - PER PROVA
-        // .get(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query=ritorno+al+futuro')
-        .get(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query='+store.searchMovieorTv+'&language=it-IT')
-        .then((res) => {
-          // DEBUG
-          console.log(res.data.results);
-          store.listmovie=res.data.results
+      let typesearch;
 
+      for (let i = 0; i < 2; i++) {
+        switch (i) {
+          case 0:
+            typesearch = store.movieSearch;
+            break;
+          case 1:
+            typesearch = store.tvseriesSearch;
+            break;
+        }
 
-        })
-        
-        .catch((err) => {
-          console.log("Errori", err)
-        });
+        axios
+          .get(store.apigeneralUrl + typesearch + '?' + store.api_key + '&query=' + store.searchMovieorTv + '&language=it-IT')
+          .then((res) => {
+            if (i === 0) {
+              store.listmovie = res.data.results;
+            } else if (i === 1) {
+              store.listTvseries = res.data.results;
+            }
+          })
+          .catch((err) => {
+            console.log("Errori", err);
+          });
+      }
     }
   },
-
-  created(){
+  created() {
     this.getGeneralObject();
-    
+
   }
 }
 </script>
 
 <template>
-  <AppHeader @search="getGeneralObject"/>
-  <AppMain  />
-  <AppCard/>
+  <AppHeader @search="getGeneralObject" />
+  <AppMain />
+  <AppCard />
 </template>
 
 <style lang="scss">

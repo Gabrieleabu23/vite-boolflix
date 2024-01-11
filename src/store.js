@@ -2,11 +2,15 @@ import { reactive } from "vue";
 export const store= reactive({
     // PER AXIOS
     apigeneralUrl:'https://api.themoviedb.org/3/search/',
-    typesearch:'movie',
+    movieSearch:'movie',
     api_key:'&api_key=fdc156d015a5d4ef5b560208024b2597',
     // VARIABILI
     listmovie:[],
+    listTvseries:[],
     searchMovieorTv:'',
+    tvseriesSearch:'tv',
+
+    // LISTA PER LE BANDIERE - ISO 639-1
     vet: [
         { am: 'am' },
         { ar: 'sy' },

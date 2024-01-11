@@ -1,5 +1,5 @@
 <script >
-import { computed } from 'vue';
+
 import { store } from '../store'
 export default {
     name: 'AppHeader',
