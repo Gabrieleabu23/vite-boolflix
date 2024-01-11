@@ -42,7 +42,10 @@ export default {
           .catch((err) => {
             console.log("Errori", err);
           });
+        
       }
+      console.log("Film: ",store.listmovie)
+      console.log("Serie tv: ",store.listTvseries)
     }
   },
   created() {
