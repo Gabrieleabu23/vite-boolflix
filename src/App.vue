@@ -19,10 +19,12 @@ export default {
   methods: {
     getGeneralObject() {
       // ESEMPIO DI STAMPA - DEBUG
-      console.log(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query=ritorno+al+futuro')
+      // console.log(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query=ritorno+al+futuro')
+      console.log(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query='+store.searchMovieorTv)
       axios
       // MILESTONE 0 - PER PROVA
-        .get(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query=ritorno+al+futuro')
+        // .get(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query=ritorno+al+futuro')
+        .get(store.apigeneralUrl+store.typesearch+'?'+store.api_key+'&query='+store.searchMovieorTv+'&language=it-IT')
         .then((res) => {
           // DEBUG
           console.log(res.data.results);
@@ -36,6 +38,7 @@ export default {
         });
     }
   },
+
   created(){
     this.getGeneralObject();
     
@@ -44,8 +47,8 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
-  <AppMain  @search="getGeneralObject"/>
+  <AppHeader @search="getGeneralObject"/>
+  <AppMain  />
   <AppCard/>
 </template>
 
