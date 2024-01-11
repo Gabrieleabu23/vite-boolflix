@@ -5,6 +5,7 @@ import { store } from '../store';
 
 export default {
   name: 'AppMain',
+  name: 'App',
   data() {
     return {
       store,
@@ -21,6 +22,9 @@ export default {
       });
 
       return variabile;
+    },
+    calcVote(numero) {
+      return Math.round((numero / 2))
     }
   },
 };
@@ -42,7 +46,11 @@ export default {
           <!-- Altrimenti, mostra un'immagine di default -->
           <img v-if="!linguaPaese(movie.original_language)" src="https://flagicons.lipis.dev/flags/4x3/xx.svg" alt=""
             class="boh">
-          <li>Voto: {{ (movie.vote_average / 2) }}</li>
+          <li>Voto: {{ calcVote(movie.vote_average) }}</li>
+          <li>
+            <font-awesome-icon v-for="(index, i) in 5" :key="i"   :icon=" i < calcVote(movie.vote_average)?  ['fas', 'star'] : ['far', 'star']" />
+
+          </li>
         </ul>
       </li>
     </ul>
@@ -63,7 +71,11 @@ export default {
               class="boh">
           </li>
           <li><img :src="`https://image.tmdb.org/t/p/w342/${tv.backdrop_path}`" alt=""></li>
-          <li>Voto: {{ (tv.vote_average / 2) }}</li>
+          <li>Voto: {{ calcVote(tv.vote_average) }}</li>
+          <li>
+            <font-awesome-icon v-for="(index, i) in 5" :key="i"   :icon=" i < calcVote(tv.vote_average)?  ['fas', 'star'] : ['far', 'star']" />
+
+          </li>
         </ul>
       </li>
     </ul>
@@ -74,6 +86,9 @@ export default {
 @use '../styles/general.scss' as *;
 @use '../styles/partials/variables' as *;
 
+.star_white{
+   color: #1e3050;
+}
 .boh {
   width: 75px;
   height: 75px;
