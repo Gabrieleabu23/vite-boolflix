@@ -3,7 +3,7 @@ export const store= reactive({
     // PER AXIOS
     apigeneralUrl:'https://api.themoviedb.org/3/search/',
     movieSearch:'movie',
-    api_key:'&api_key=fdc156d015a5d4ef5b560208024b2597',
+    api_key:'api_key=fdc156d015a5d4ef5b560208024b2597',
     // VARIABILI
     listmovie:[],
     listTvseries:[],

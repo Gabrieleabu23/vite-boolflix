@@ -31,7 +31,7 @@ export default {
         }
 
         axios
-          .get(store.apigeneralUrl + typesearch + '?' + store.api_key + '&query=' + store.searchMovieorTv + '&language=it-IT')
+          .get(store.apigeneralUrl + typesearch + '?&' + store.api_key + '&query=' + store.searchMovieorTv + '&language=it-IT')
           .then((res) => {
             if (i === 0) {
               store.listmovie = res.data.results;
