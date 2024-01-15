@@ -6,6 +6,7 @@ export const store= reactive({
     api_key:'api_key=fdc156d015a5d4ef5b560208024b2597',
     // VARIABILI
     listmovie:[],
+    listgenres:[],
     listTvseries:[],
     searchMovieorTv:'',
     tvseriesSearch:'tv',
