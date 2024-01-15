@@ -48,6 +48,18 @@ export default {
         });
 
     },
+    getCast(id) {
+       axios.get(`https://api.themoviedb.org/3/movie/${id}/credits`, {
+        headers: {
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZGMxNTZkMDE1YTVkNGVmNWI1NjAyMDgwMjRiMjU5NyIsInN1YiI6IjY1OWU3M2ZhNzc3NmYwMDIwMTNiNWE5MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OJLJqyoO0-Lih-r1kvsLE7trz52UcXnaed0DMtiXNt4'
+        }
+      })
+        .then((res) => {
+          store.castMovieTv = res.data.cast.slice(0, 5).map(actor => actor.name);
+          console.log(castMovieTv);
+
+        })
+    },
     ChangeTextDescription() {
       console.log("Clicked");
 
@@ -116,6 +128,11 @@ export default {
                     <span class="card-description-continue text-danger"
                       @click="ChangeTextDescription()">Continua...</span>
                     <h5 class="fs-6"> Generi associati: {{ CercaGeneri(movie.genre_ids) }}</h5>
+                    <!-- {{ getCast(movie.id) }} -->
+                    <!-- <h5 class="fs-6"> Boh: <span v-for="actor in store.castMovieTv.length">
+                        {{ actor }}
+                      </span></h5> -->
+
                   </div>
                   <h6 v-if="movie.original_title != movie.title">Titolo Originale: {{ movie.original_title }}</h6>
                   <p><lang-flag :iso="linguaPaese(movie.original_language) ? movie.original_language : ''" size="big"
@@ -163,6 +180,7 @@ export default {
                     <span class="card-description-continue text-danger"
                       @click="ChangeTextDescription()">Continua...</span>
                     <h5 class="fs-6"> Generi associati: {{ CercaGeneri(tv.genre_ids) }}</h5>
+                    <!-- <h5 class="fs-6"> {{ getCast(tv.id) }}</h5> -->
                   </div>
                   <h6>Titolo Originale: {{ tv.original_name }}</h6>
                   <p><lang-flag :iso="linguaPaese(tv.original_language) ? tv.original_language : ''" size="big"

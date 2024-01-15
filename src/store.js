@@ -7,6 +7,7 @@ export const store= reactive({
     // VARIABILI
     listmovie:[],
     listgenres:[],
+    castMovieTv:[],
     listTvseries:[],
     searchMovieorTv:'',
     tvseriesSearch:'tv',
